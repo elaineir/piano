@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="icon" href="./assets/piano.ico" type="image/x-icon">
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&family=Open+Sans:wght@300;400;800&display=swap"
+    rel="stylesheet">
+  <link href="./styles/style.css" rel="stylesheet">
+
+  <title>Virtual Piano</title>
+</head>
+
+<body class="page">
+  <header class="header">
+    <h1 class="header__title">Virtual Piano</h1>
+  </header>
+
+  <main class="content">
+    <div class="button-container">
+      <button class="button button_type_notes button_active">Notes</button>
+      <button class="button button_type_letters">Letters</button>
+    </div>
+    <div class="piano">
+      <div class="piano__keys">
+        <button class="piano__key" data-key="68" data-letter="D" data-note="c">
+          <span class="piano__note">c</span>
+        </button>
+        <button class="piano__key" data-key="70" data-letter="F" data-note="d">
+          <span class="piano__note">d</span>
+        </button>
+        <button class="piano__key" data-key="71" data-letter="G" data-note="e">
+          <span class="piano__note">e</span>
+        </button>
+        <div class="piano__keys-sharp piano__keys-sharp_left">
+          <button class="piano__key piano__key_sharp" data-key="82" data-letter="R" data-note="c♯">
+            <span class="piano__note piano__note_sharp">c♯</span>
+          </button>
+          <button class="piano__key piano__key_sharp" data-key="84" data-letter="T" data-note="d♯">
+            <span class="piano__note piano__note_sharp">d♯</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="piano__keys">
+        <button class="piano__key" data-key="72" data-letter="H" data-note="f">
+          <span class="piano__note">f</span>
+        </button>
+        <button class="piano__key" data-key="74" data-letter="J" data-note="g">
+          <span class="piano__note">g</span>
+        </button>
+        <button class="piano__key" data-key="75" data-letter="K" data-note="a">
+          <span class="piano__note">a</span>
+        </button>
+        <button class="piano__key" data-key="76" data-letter="L" data-note="b">
+          <span class="piano__note">b</span>
+        </button>
+        <div class="piano__keys-sharp piano__keys-sharp_right">
+          <button class="piano__key piano__key_sharp" data-key="85" data-letter="U" data-note="f♯">
+            <span class="piano__note piano__note_sharp">f♯</span>
+          </button>
+          <button class="piano__key piano__key_sharp" data-key="73" data-letter="I" data-note="g♯">
+            <span class="piano__note piano__note_sharp">g♯</span>
+          </button>
+          <button class="piano__key piano__key_sharp" data-key="79" data-letter="O" data-note="a♯">
+            <span class="piano__note piano__note_sharp">a♯</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="fullscreen"></button>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <a class="footer__link footer__link_type_github" href="https://github.com/elaineir" target="_blank" rel="noopener noreferrer">github</a>
+    </div>
+  </footer>
+  <script src="./scripts/index.js"></script>
+</body>
+
+</html>
