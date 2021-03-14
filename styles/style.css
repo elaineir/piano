@@ -96,6 +96,7 @@
 
 .piano__key {
 	box-sizing: border-box;
+	display: block;
 	position: relative;
 	width: 30px;
 	height: 270px;
@@ -135,12 +136,12 @@
   box-shadow: 0px -8px 2px 5px rgba(0, 0, 0, 0.7) inset;
 }
 
-.piano__key_sharp:hover {
-	filter: brightness(150%);
+.piano__key_active {
+	transform: scaleY(.96);
 }
 
-.piano__key_active {
-	transform: scale(0.96);
+.piano__key_sharp:hover {
+	background: linear-gradient(to top, #676c71, #343438);
 }
 
 .piano__note {
