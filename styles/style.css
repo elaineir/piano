@@ -36,7 +36,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	max-width: 1140px;
+	/* max-width: 1140px; */
 	margin: 0 auto;
 }
 
@@ -81,8 +81,12 @@
 	display: flex;
 	width: 100%;
 	height: 270px;
-	max-width: 560px;
+	max-width: 1600px;
 	margin: 0 auto 60px;
+}
+
+.piano__octave {
+	display: flex;
 }
 
 .piano__keys {
@@ -94,15 +98,15 @@
 .piano__key {
 	box-sizing: border-box;
 	position: relative;
-	width: 80px;
+	width: 30px;
 	height: 270px;
 	background-color: rgba(255, 255, 255, 0.85);
-	border: 4px solid #1e2327;
+	border: 1px solid #1e2327;
 	outline: none;
-	border-radius: 0px 0px 12px 12px;
+	border-radius: 0px 0px 8px 8px;
 	transition: 0.3s;
 	cursor: pointer;
-  box-shadow: 0px -12px 2px 3px rgba(112, 112, 112, 0.7) inset;
+  box-shadow: 0px -5px 2px 2px rgba(112, 112, 112, 0.7) inset;
 }
 
 .piano__key:hover {
@@ -111,37 +115,29 @@
 
 .piano__keys-sharp {
 	position: absolute;
-	top: 4px;
+	left: 18px;
+	right: 18px;
+	top: 0;
 	display: flex;
 	justify-content: space-between;
 	pointer-events: none;
 }
 
-.piano__keys-sharp_left {
-	left: 53px;
-	right: 53px;
-}
-
-.piano__keys-sharp_right {
-	left: 53px;
-	right: 53px;
-}
-
 .piano__key_sharp {
-	width: 54px;
+	width: 24px;
 	height: 170px;
 	background: linear-gradient(to top, #676c71, #1e2327);
 	border: 0;
-	border-radius: 0px 0px 9px 9px;
+	border-radius: 0px 0px 6px 6px;
 	top: 0;
 	z-index: 3;
 	pointer-events: auto;
 	transform-origin: center top;
-  box-shadow: 0px -12px 2px 9px rgba(0, 0, 0, 0.7) inset;
+  box-shadow: 0px -8px 2px 5px rgba(0, 0, 0, 0.7) inset;
 }
 
 .piano__key_sharp:hover {
-	background-color: #1e2327;
+	filter: brightness(150%);
 }
 
 .piano__key_active {
@@ -151,11 +147,11 @@
 .piano__note {
 	position: absolute;
 	bottom: -45px;
-	left: 15px;
-	width: 40px;
+	left: 0;
+	width: 26px;
 	height: 40px;
 	font-family: "Open Sans", Arial, Helvetica, sans-serif;
-	font-size: 26px;
+	font-size: 14px;
 	line-height: 40px;
 	text-align: center;
 	color: #676c71;
@@ -170,7 +166,6 @@
 
 .piano__note_sharp {
 	top: -45px;
-	left: 7px;
 }
 
 .piano__note_active {
@@ -252,68 +247,4 @@
 	color: #cbd5de;
 	font-size: 16px;
 	transition: 0.3s;
-}
-
-@media screen and (max-width: 768px) {
-	.fullscreen {
-		top: 10px;
-		right: 20px;
-		width: 40px;
-		height: 40px;
-	}
-}
-
-@media screen and (max-width: 600px) {
-	.content {
-		padding-top: 40px;
-	}
-
-	.piano {
-		max-width: 310px;
-		height: 160px;
-	}
-
-	.piano__key {
-		width: 43px;
-		height: 160px;
-		border-radius: 0px 0px 8px 8px;
-		border: 2px solid #1e2327;
-    box-shadow: 0px -12px 2px 2px rgba(112, 112, 112, 0.7) inset;
-	}
-
-	.piano__keys-sharp {
-		top: -1px;
-		left: 26px;
-		right: 26px;
-	}
-
-	.piano__key_sharp {
-		width: 34px;
-		height: 100px;
-		border-radius: 0px 0px 6px 6px;
-    box-shadow: 0px -12px 2px 4px rgba(0, 0, 0, 0.7) inset;
-	}
-
-	.piano__note {
-		bottom: -35px;
-	  left: 6px;
-		width: 30px;
-		height: 30px;
-		font-size: 22px;
-	}
-
-	.piano__note_sharp {
-	  left: 3px;
-	}
-
-	.button-container {
-		width: 244px;
-		height: 40px;
-		margin-bottom: 80px;
-	}
-
-	.button {
-		width: 120px;
-		height: 40px;
-	}
 }

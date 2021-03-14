@@ -26,48 +26,355 @@
       <button class="button button_type_letters">Letters</button>
     </div>
     <div class="piano">
-      <div class="piano__keys">
-        <button class="piano__key" data-key="68" data-letter="D" data-note="c">
-          <span class="piano__note">c</span>
-        </button>
-        <button class="piano__key" data-key="70" data-letter="F" data-note="d">
-          <span class="piano__note">d</span>
-        </button>
-        <button class="piano__key" data-key="71" data-letter="G" data-note="e">
-          <span class="piano__note">e</span>
-        </button>
-        <div class="piano__keys-sharp piano__keys-sharp_left">
-          <button class="piano__key piano__key_sharp" data-key="82" data-letter="R" data-note="c♯">
-            <span class="piano__note piano__note_sharp">c♯</span>
+      <div class="piano__octave" aria-label="sub-contra octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-note="a0">
+            <span class="piano__note">a0</span>
           </button>
-          <button class="piano__key piano__key_sharp" data-key="84" data-letter="T" data-note="d♯">
-            <span class="piano__note piano__note_sharp">d♯</span>
+          <button class="piano__key" data-note="b0">
+            <span class="piano__note">b0</span>
           </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="a♯0">
+              <span class="piano__note piano__note_sharp">a♯0</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="piano__keys">
-        <button class="piano__key" data-key="72" data-letter="H" data-note="f">
-          <span class="piano__note">f</span>
-        </button>
-        <button class="piano__key" data-key="74" data-letter="J" data-note="g">
-          <span class="piano__note">g</span>
-        </button>
-        <button class="piano__key" data-key="75" data-letter="K" data-note="a">
-          <span class="piano__note">a</span>
-        </button>
-        <button class="piano__key" data-key="76" data-letter="L" data-note="b">
-          <span class="piano__note">b</span>
-        </button>
-        <div class="piano__keys-sharp piano__keys-sharp_right">
-          <button class="piano__key piano__key_sharp" data-key="85" data-letter="U" data-note="f♯">
-            <span class="piano__note piano__note_sharp">f♯</span>
+      <div class="piano__octave" aria-label="contra octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-note="c1">
+            <span class="piano__note">c1</span>
           </button>
-          <button class="piano__key piano__key_sharp" data-key="73" data-letter="I" data-note="g♯">
-            <span class="piano__note piano__note_sharp">g♯</span>
+          <button class="piano__key" data-note="d1">
+            <span class="piano__note">d1</span>
           </button>
-          <button class="piano__key piano__key_sharp" data-key="79" data-letter="O" data-note="a♯">
-            <span class="piano__note piano__note_sharp">a♯</span>
+          <button class="piano__key" data-note="e1">
+            <span class="piano__note">e1</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="c♯1">
+              <span class="piano__note piano__note_sharp">c♯1</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="d♯1">
+              <span class="piano__note piano__note_sharp">d♯1</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-note="f1">
+            <span class="piano__note">f1</span>
+          </button>
+          <button class="piano__key" data-note="g1">
+            <span class="piano__note">g1</span>
+          </button>
+          <button class="piano__key" data-note="a1">
+            <span class="piano__note">a1</span>
+          </button>
+          <button class="piano__key" data-note="b1">
+            <span class="piano__note">b1</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="f♯1">
+              <span class="piano__note piano__note_sharp">f♯1</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="g♯1">
+              <span class="piano__note piano__note_sharp">g♯1</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="a♯1">
+              <span class="piano__note piano__note_sharp">a♯1</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="great octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-note="c2">
+            <span class="piano__note">c2</span>
+          </button>
+          <button class="piano__key" data-note="d2">
+            <span class="piano__note">d2</span>
+          </button>
+          <button class="piano__key" data-note="e2">
+            <span class="piano__note">e2</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="c♯2">
+              <span class="piano__note piano__note_sharp">c♯2</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="d♯2">
+              <span class="piano__note piano__note_sharp">d♯2</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-note="f2">
+            <span class="piano__note">f2</span>
+          </button>
+          <button class="piano__key" data-note="g2">
+            <span class="piano__note">g2</span>
+          </button>
+          <button class="piano__key" data-note="a2">
+            <span class="piano__note">a2</span>
+          </button>
+          <button class="piano__key" data-note="b2">
+            <span class="piano__note">b2</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="f♯2">
+              <span class="piano__note piano__note_sharp">f♯2</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="g♯2">
+              <span class="piano__note piano__note_sharp">g♯2</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="a♯2">
+              <span class="piano__note piano__note_sharp">a♯2</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="small octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-key="81" data-letter="Q" data-note="c3">
+            <span class="piano__note">c3</span>
+          </button>
+          <button class="piano__key" data-key="87" data-letter="W" data-note="d3">
+            <span class="piano__note">d3</span>
+          </button>
+          <button class="piano__key" data-key="69" data-letter="E" data-note="e3">
+            <span class="piano__note">e3</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-key="50" data-letter="2" data-note="c♯3">
+              <span class="piano__note piano__note_sharp">c♯3</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="51" data-letter="3" data-note="d♯3">
+              <span class="piano__note piano__note_sharp">d♯3</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-key="82" data-letter="R" data-note="f3">
+            <span class="piano__note">f3</span>
+          </button>
+          <button class="piano__key" data-key="84" data-letter="T" data-note="g3">
+            <span class="piano__note">g3</span>
+          </button>
+          <button class="piano__key" data-key="89" data-letter="Y" data-note="a3">
+            <span class="piano__note">a3</span>
+          </button>
+          <button class="piano__key" data-key="85" data-letter="U" data-note="b3">
+            <span class="piano__note">b3</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-key="53" data-letter="5" data-note="f♯3">
+              <span class="piano__note piano__note_sharp">f♯3</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="54" data-letter="6" data-note="g♯3">
+              <span class="piano__note piano__note_sharp">g♯3</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="55" data-letter="7" data-note="a♯3">
+              <span class="piano__note piano__note_sharp">a♯3</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="one-line octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-key="73" data-letter="I" data-note="c4">
+            <span class="piano__note">c4</span>
+          </button>
+          <button class="piano__key" data-key="79" data-letter="O" data-note="d4">
+            <span class="piano__note">d4</span>
+          </button>
+          <button class="piano__key" data-key="80" data-letter="P" data-note="e4">
+            <span class="piano__note">e4</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-key="57" data-letter="9" data-note="c♯4">
+              <span class="piano__note piano__note_sharp">c♯4</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="48" data-letter="0" data-note="d♯4">
+              <span class="piano__note piano__note_sharp">d♯4</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-key="90" data-letter="Z" data-note="f4">
+            <span class="piano__note">f4</span>
+          </button>
+          <button class="piano__key" data-key="88" data-letter="X" data-note="g4">
+            <span class="piano__note">g4</span>
+          </button>
+          <button class="piano__key" data-key="67" data-letter="C" data-note="a4">
+            <span class="piano__note">a4</span>
+          </button>
+          <button class="piano__key" data-key="86" data-letter="V" data-note="b4">
+            <span class="piano__note">b4</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-key="83" data-letter="S" data-note="f♯4">
+              <span class="piano__note piano__note_sharp">f♯4</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="68" data-letter="D" data-note="g♯4">
+              <span class="piano__note piano__note_sharp">g♯4</span>
+            </button>
+            <button class="piano__key piano__key_sharp"  data-key="70" data-letter="F" data-note="a♯4">
+              <span class="piano__note piano__note_sharp">a♯4</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="two-line octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-key="66" data-letter="B" data-note="c5">
+            <span class="piano__note">c5</span>
+          </button>
+          <button class="piano__key" data-key="78" data-letter="N" data-note="d5">
+            <span class="piano__note">d5</span>
+          </button>
+          <button class="piano__key" data-key="77" data-letter="M" data-note="e5">
+            <span class="piano__note">e5</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-key="72" data-letter="H" data-note="c♯5">
+              <span class="piano__note piano__note_sharp">c♯5</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="74" data-letter="J" data-note="d♯5">
+              <span class="piano__note piano__note_sharp">d♯5</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-key="188" data-letter="," data-note="f5">
+            <span class="piano__note">f5</span>
+          </button>
+          <button class="piano__key" data-key="190" data-letter="." data-note="g5">
+            <span class="piano__note">g5</span>
+          </button>
+          <button class="piano__key" data-key="191" data-letter="?" data-note="a5">
+            <span class="piano__note">a5</span>
+          </button>
+          <button class="piano__key"  data-key="222" data-letter="'" data-note="b5">
+            <span class="piano__note">b5</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-key="76" data-letter="L" data-note="f♯5">
+              <span class="piano__note piano__note_sharp">f♯5</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="186" data-letter=";" data-note="g♯5">
+              <span class="piano__note piano__note_sharp">g♯5</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-key="219" data-letter="[" data-note="a♯5">
+              <span class="piano__note piano__note_sharp">a♯5</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="three-line octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-note="c6">
+            <span class="piano__note">c6</span>
+          </button>
+          <button class="piano__key" data-note="d6">
+            <span class="piano__note">d6</span>
+          </button>
+          <button class="piano__key" data-note="e6">
+            <span class="piano__note">e6</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="c♯6">
+              <span class="piano__note piano__note_sharp">c♯6</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="d♯6">
+              <span class="piano__note piano__note_sharp">d♯6</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-note="f6">
+            <span class="piano__note">f6</span>
+          </button>
+          <button class="piano__key" data-note="g6">
+            <span class="piano__note">g6</span>
+          </button>
+          <button class="piano__key" data-note="a6">
+            <span class="piano__note">a6</span>
+          </button>
+          <button class="piano__key" data-note="b6">
+            <span class="piano__note">b6</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="f♯6">
+              <span class="piano__note piano__note_sharp">f♯6</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="g♯6">
+              <span class="piano__note piano__note_sharp">g♯6</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="a♯6">
+              <span class="piano__note piano__note_sharp">a♯6</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="four-line octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-note="c7">
+            <span class="piano__note">c7</span>
+          </button>
+          <button class="piano__key" data-note="d7">
+            <span class="piano__note">d7</span>
+          </button>
+          <button class="piano__key" data-note="e7">
+            <span class="piano__note">e7</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="c♯7">
+              <span class="piano__note piano__note_sharp">c♯7</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="d♯7">
+              <span class="piano__note piano__note_sharp">d♯7</span>
+            </button>
+          </div>
+        </div>
+        <div class="piano__keys">
+          <button class="piano__key" data-note="f7">
+            <span class="piano__note">f7</span>
+          </button>
+          <button class="piano__key" data-note="g7">
+            <span class="piano__note">g7</span>
+          </button>
+          <button class="piano__key" data-note="a7">
+            <span class="piano__note">a7</span>
+          </button>
+          <button class="piano__key" data-note="b7">
+            <span class="piano__note">b7</span>
+          </button>
+          <div class="piano__keys-sharp">
+            <button class="piano__key piano__key_sharp" data-note="f♯7">
+              <span class="piano__note piano__note_sharp">f♯7</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="g♯7">
+              <span class="piano__note piano__note_sharp">g♯7</span>
+            </button>
+            <button class="piano__key piano__key_sharp" data-note="a♯7">
+              <span class="piano__note piano__note_sharp">a♯7</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="piano__octave" aria-label="five-line octave">
+        <div class="piano__keys">
+          <button class="piano__key" data-note="c8">
+            <span class="piano__note">c8</span>
           </button>
         </div>
       </div>

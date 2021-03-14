@@ -8,18 +8,42 @@ const notesButton = document.querySelector('.button_type_notes');
 const lettersButton = document.querySelector('.button_type_letters');
 
 const keyCodes = {
+  81: false,
+  87: false,
+  69: false,
+  82: false,
+  50: false,
+  51: false,
+  53: false,
+  84: false,
+  89: false,
+  85: false,
+  54: false,
+  55: false,
+  73: false,
+  79: false,
+  80: false,
+  57: false,
+  48: false,
+  90: false,
+  88: false,
+  67: false,
+  83: false,
   68: false,
   70: false,
-  71: false,
+  86: false,
+  66: false,
+  78: false,
+  77: false,
   72: false,
-  73: false,
   74: false,
-  75: false,
+  188: false,
+  190: false,
+  191: false,
+  222: false,
   76: false,
-  79: false,
-  82: false,
-  84: false,
-  85: false
+  186: false,
+  219: false
 };
 
 const addElemClass = (elem, elemClass) => {
@@ -57,6 +81,7 @@ const createSound = (src) => {
   const sound = new Audio();
   sound.src = src;
   sound.currentTime = 0;
+  sound.volume = 0.2;
   return sound;
 };
 
@@ -141,3 +166,5 @@ const toggleFullScreen = () => {
 };
 
 fullscreenButton.addEventListener('click', toggleFullScreen);
+
+
