@@ -119,6 +119,7 @@
 .cntrls-button_type_reset {
 	border-radius: 50% 0 0 50%;
 	background-image: url(../assets/svg/icon-reset.svg);
+	background-size: 18px;
 }
 
 .cntrls-button_type_play {
