@@ -200,6 +200,7 @@ const showRecordedNotes = () => {
 
 const resetRecord = () => {
   playedNotes = [];
+  isPlaying = false;
   showRecordedNotes();
 };
 
