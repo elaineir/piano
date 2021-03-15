@@ -325,6 +325,15 @@
 	width: 100%;
 	max-width: 1140px;
 	margin: 0 auto;
+	opacity: .5;
+}
+
+.footer__copyright {
+	font-family: "Open Sans", Arial, Helvetica, sans-serif;
+	color: #cbd5de;
+	line-height: 45px;
+	font-size: 16px;
+	margin-right: 6px;
 }
 
 .footer__link {
@@ -351,11 +360,10 @@
 	box-sizing: border-box;
 	height: 45px;
 	padding-left: 30px;
+	color: #cbd5de;
+	line-height: 45px;
+	font-size: 16px;
 	background-image: url("../assets/svg/github.svg");
 	background-size: 25px;
-	line-height: 45px;
-	color: #cbd5de;
-	font-size: 16px;
-	opacity: .5;
 	transition: .3s;
 }
