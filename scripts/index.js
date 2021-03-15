@@ -6,6 +6,7 @@ const piano = document.querySelector('.piano');
 const pianoKeys = document.querySelectorAll('.piano__key');
 const notesButton = document.querySelector('.button_type_notes');
 const lettersButton = document.querySelector('.button_type_letters');
+const noMarksButton = document.querySelector('.button_type_nomarks');
 
 const keyCodes = {
   81: false,
@@ -62,19 +63,31 @@ const switchKeyMode = (evt) => {
     });
     addElemClass(notesButton, 'button_active')
     removeElemClass(lettersButton, 'button_active');
+    removeElemClass(noMarksButton, 'button_active');
   }
 
   if (evt.target === lettersButton && !lettersButton.classList.contains('button_active')) {
     pianoKeys.forEach(key => {
-      key.querySelector('.piano__note').textContent = key.dataset.letter
+      key.querySelector('.piano__note').textContent = key.dataset.letter;
     });
     addElemClass(lettersButton, 'button_active');
     removeElemClass(notesButton, 'button_active');
+    removeElemClass(noMarksButton, 'button_active');
+  }
+
+  if (evt.target === noMarksButton && !noMarksButton.classList.contains('button_active')) {
+    pianoKeys.forEach(key => {
+      key.querySelector('.piano__note').textContent = '';
+    });
+    addElemClass(noMarksButton, 'button_active');
+    removeElemClass(notesButton, 'button_active');
+    removeElemClass(lettersButton, 'button_active');
   }
 };
 
 notesButton.addEventListener('click', switchKeyMode);
 lettersButton.addEventListener('click', switchKeyMode);
+noMarksButton.addEventListener('click', switchKeyMode);
 
 //piano functions
 const createSound = (src) => {
@@ -147,6 +160,8 @@ const playSound = (evt) => {
       const note = key.dataset.note;
       const src = `./assets/audio/${note}.mp3`;
       createSound(src).play();
+      playedNotes.push(note);
+      showRecordedNotes();
     } 
   }
 };
@@ -167,4 +182,86 @@ const toggleFullScreen = () => {
 
 fullscreenButton.addEventListener('click', toggleFullScreen);
 
+//play notes
+const resetButton = document.querySelector('.cntrls-button_type_reset');
+const playButton = document.querySelector('.cntrls-button_type_play');
+const stopButton = document.querySelector('.cntrls-button_type_stop');
+const backspaceButton = document.querySelector('.cntrls-button_type_backspace');
+const notesRecorder = document.querySelector('.notes-recorder__notes');
+const hideRecorderButton = document.querySelector('.button_type_toggle-recorder');
+const recorderSection = document.querySelector('.recorder-section');
+let playedNotes = [];
+let isPlayingStopped = false;
+let isPlaying = false;
 
+const showRecordedNotes = () => {
+  notesRecorder.textContent = playedNotes.join(' ');
+};
+
+const resetRecord = () => {
+  playedNotes = [];
+  showRecordedNotes();
+};
+
+const deleteLastNote = () => {
+  playedNotes.pop();
+  showRecordedNotes();
+};
+
+const stopPlayingRecordedNotes = () => {
+  if (!isPlayingStopped && isPlaying) {
+    return isPlayingStopped = true;
+  }
+  return;
+};
+
+const playRecordedNotes = () => {
+  isPlaying = true;
+  let index = 1;
+  const src = `./assets/audio/${playedNotes[0]}.mp3`;
+  const sound = createSound(src);
+  sound.play();
+
+  sound.addEventListener('timeupdate', soundHandler);
+
+  function soundHandler() {
+    if (isPlayingStopped) {
+      sound.removeEventListener('timeupdate', soundHandler);
+      isPlaying = false;
+      isPlayingStopped = false;
+      return;
+    }
+    if (sound.currentTime > .4) {
+      if (index < playedNotes.length) {
+        if (index === playedNotes.length - 1) {
+          sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
+          sound.play();
+          sound.removeEventListener('timeupdate', soundHandler);
+          isPlaying = false;
+          return;
+        }
+        sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
+        sound.currentTime = 0;
+        sound.play();
+        index++;
+      }
+    }
+  }
+};
+
+const toggleRecorder = () => {
+  if (recorderSection.classList.contains('recorder-section_hidden')) {
+    removeElemClass(recorderSection, 'recorder-section_hidden');
+    hideRecorderButton.textContent = 'hide';
+  } else {
+    addElemClass(recorderSection, 'recorder-section_hidden');
+    hideRecorderButton.textContent = 'show';
+  }
+  
+};
+
+resetButton.addEventListener('click', resetRecord);
+backspaceButton.addEventListener('click', deleteLastNote);
+playButton.addEventListener('click', playRecordedNotes);
+stopButton.addEventListener('click', stopPlayingRecordedNotes);
+hideRecorderButton.addEventListener('click', toggleRecorder);
