@@ -55,11 +55,11 @@ const handlePlay = (evt) => {
   let key;
   if (evt.type === 'keydown') {
   //check if key allowed to play sound
-    if (Object.keys(keyCodes).some(key => Number(key) === evt.keyCode)) {
+    if (Object.keys(keyCodes).some(key => key === evt.code)) {
     //check if key pressed at this moment
-      if (!keyCodes[evt.keyCode]) {
-        key = document.querySelector(`button[data-key='${evt.keyCode}']`);
-        keyCodes[evt.keyCode] = true;
+      if (!keyCodes[evt.code]) {
+        key = document.querySelector(`button[data-key='${evt.code}']`);
+        keyCodes[evt.code] = true;
       } else return;
     } else return;
   } else key = evt.target;
@@ -82,9 +82,9 @@ const handleStop = (evt) => {
   let key;
   if (evt.type === 'keyup') {
     //check if key allowed to stop animation
-    if (Object.keys(keyCodes).some(key => Number(key) === evt.keyCode)) {
-      key = document.querySelector(`button[data-key='${evt.keyCode}']`);
-      keyCodes[evt.keyCode] = false;
+    if (Object.keys(keyCodes).some(key => key === evt.code)) {
+      key = document.querySelector(`button[data-key='${evt.code}']`);
+      keyCodes[evt.code] = false;
     } else return;
   } else key = evt.target;
 
