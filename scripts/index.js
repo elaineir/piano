@@ -1,5 +1,7 @@
 'use strict';
 
+import { keyCodes } from './constants.js';
+
 const fullscreenButton = document.querySelector('.fullscreen');
 const page = document.querySelector('.page');
 const piano = document.querySelector('.piano');
@@ -8,80 +10,31 @@ const notesButton = document.querySelector('.button_type_notes');
 const lettersButton = document.querySelector('.button_type_letters');
 const noMarksButton = document.querySelector('.button_type_nomarks');
 
-const keyCodes = {
-  81: false,
-  87: false,
-  69: false,
-  82: false,
-  50: false,
-  51: false,
-  53: false,
-  84: false,
-  89: false,
-  85: false,
-  54: false,
-  55: false,
-  73: false,
-  79: false,
-  80: false,
-  57: false,
-  48: false,
-  90: false,
-  88: false,
-  67: false,
-  83: false,
-  68: false,
-  70: false,
-  86: false,
-  66: false,
-  78: false,
-  77: false,
-  72: false,
-  74: false,
-  188: false,
-  190: false,
-  191: false,
-  222: false,
-  76: false,
-  186: false,
-  219: false
-};
+const addElClass = (elem, elemClass) => elem.classList.add(elemClass);
 
-const addElemClass = (elem, elemClass) => {
-  elem.classList.add(elemClass);
-};
-
-const removeElemClass = (elem, elemClass) => {
-  elem.classList.remove(elemClass);
-};
+const removeElClass = (elem, elemClass) => elem.classList.remove(elemClass);
 
 //swith between keyboard and notes
 const switchKeyMode = (evt) => {
   if (evt.target === notesButton && !notesButton.classList.contains('button_active')) {
-    pianoKeys.forEach(key => {
-      key.querySelector('.piano__note').textContent = key.dataset.note;
-    });
-    addElemClass(notesButton, 'button_active')
-    removeElemClass(lettersButton, 'button_active');
-    removeElemClass(noMarksButton, 'button_active');
+    pianoKeys.forEach(key => key.querySelector('.piano__note').textContent = key.dataset.note);
+    addElClass(notesButton, 'button_active')
+    removeElClass(lettersButton, 'button_active');
+    removeElClass(noMarksButton, 'button_active');
   }
 
   if (evt.target === lettersButton && !lettersButton.classList.contains('button_active')) {
-    pianoKeys.forEach(key => {
-      key.querySelector('.piano__note').textContent = key.dataset.letter;
-    });
-    addElemClass(lettersButton, 'button_active');
-    removeElemClass(notesButton, 'button_active');
-    removeElemClass(noMarksButton, 'button_active');
+    pianoKeys.forEach(key => key.querySelector('.piano__note').textContent = key.dataset.letter);
+    addElClass(lettersButton, 'button_active');
+    removeElClass(notesButton, 'button_active');
+    removeElClass(noMarksButton, 'button_active');
   }
 
   if (evt.target === noMarksButton && !noMarksButton.classList.contains('button_active')) {
-    pianoKeys.forEach(key => {
-      key.querySelector('.piano__note').textContent = '';
-    });
-    addElemClass(noMarksButton, 'button_active');
-    removeElemClass(notesButton, 'button_active');
-    removeElemClass(lettersButton, 'button_active');
+    pianoKeys.forEach(key => key.querySelector('.piano__note').textContent = '');
+    addElClass(noMarksButton, 'button_active');
+    removeElClass(notesButton, 'button_active');
+    removeElClass(lettersButton, 'button_active');
   }
 };
 
@@ -98,78 +51,67 @@ const createSound = (src) => {
   return sound;
 };
 
-const stopPlaying = (evt) => {
+const handlePlay = (evt) => {
+  let key;
+  if (evt.type === 'keydown') {
+  //check if key allowed to play sound
+    if (Object.keys(keyCodes).some(key => Number(key) === evt.keyCode)) {
+    //check if key pressed at this moment
+      if (!keyCodes[evt.keyCode]) {
+        key = document.querySelector(`button[data-key='${evt.keyCode}']`);
+        keyCodes[evt.keyCode] = true;
+      } else return;
+    } else return;
+  } else key = evt.target;
+
+  if (key.classList.contains('piano__key')) {
+    const letter = key.querySelector('.piano__note');
+      
+    addElClass(key, 'piano__key_active');
+    addElClass(letter, 'piano__note_active');
+      
+    const note = key.dataset.note;
+    const src = `./assets/audio/${note}.mp3`;
+    createSound(src).play();
+    playedNotes.push(note);
+    showRecordedNotes();
+  }
+};
+
+const handleStop = (evt) => {
+  let key;
   if (evt.type === 'keyup') {
     //check if key allowed to stop animation
     if (Object.keys(keyCodes).some(key => Number(key) === evt.keyCode)) {
-      const key = document.querySelector(`button[data-key='${evt.keyCode}']`);
-      handleStop(key);
+      key = document.querySelector(`button[data-key='${evt.keyCode}']`);
       keyCodes[evt.keyCode] = false;
-    }
-  }
+    } else return;
+  } else key = evt.target;
 
-  if (evt.type === 'mouseup' || evt.type ==='mouseout') {
-    const key = evt.target;
-    handleStop(key);
-  }
-  
-  function handleStop(key) {
-    if (key.classList.contains('piano__key')) {
-      removeElemClass(key, 'piano__key_active');
-  
-      const letter = key.querySelector('.piano__note');
-      removeElemClass(letter, 'piano__note_active');
-    }
+  if (key.classList.contains('piano__key')) {
+    removeElClass(key, 'piano__key_active');
+      
+    const letter = key.querySelector('.piano__note');
+    removeElClass(letter, 'piano__note_active');
   }
 };
 
-const stopPlayingOnMouseUp = (evt) => {
-  stopPlaying(evt);
-  piano.removeEventListener('mouseover', playSound);
-  document.removeEventListener('mouseup', stopPlayingOnMouseUp);
+const startRespond = (evt) => {
+  handlePlay(evt);
+  piano.addEventListener('mouseover', handlePlay);
+  document.addEventListener('mouseup', stopRespond);
 };
 
-const playSound = (evt) => {
-  if (evt.type === 'keydown') {
-    //check if key allowed to play sound
-    if (Object.keys(keyCodes).some(key => Number(key) === evt.keyCode)) {
-      //check if key pressed at this moment
-      if (!keyCodes[evt.keyCode]) {
-        const key = document.querySelector(`button[data-key='${evt.keyCode}']`);
-        handlePLay(key);
-        keyCodes[evt.keyCode] = true;
-      } else { return }
-    }
-  }
-
-  if (evt.type === 'mousedown' || evt.type === 'mouseover') {
-    const key = evt.target;
-    handlePLay(key);
-
-    piano.addEventListener('mouseover', playSound);
-    document.addEventListener('mouseup', stopPlayingOnMouseUp);
-  }
-
-  function handlePLay(key) {
-    if (key.classList.contains('piano__key')) {
-      const letter = key.querySelector('.piano__note');
-  
-      addElemClass(key, 'piano__key_active');
-      addElemClass(letter, 'piano__note_active');
-  
-      const note = key.dataset.note;
-      const src = `./assets/audio/${note}.mp3`;
-      createSound(src).play();
-      playedNotes.push(note);
-      showRecordedNotes();
-    } 
-  }
+const stopRespond = (evt) => {
+  handleStop(evt);
+  piano.removeEventListener('mouseover', handlePlay);
+  document.removeEventListener('mouseup', stopRespond);
 };
 
-piano.addEventListener('mousedown', playSound);
-piano.addEventListener('mouseout', stopPlaying);
-document.addEventListener('keydown', playSound);
-document.addEventListener('keyup', stopPlaying);
+piano.addEventListener('mousedown', startRespond);
+piano.addEventListener('mouseout', handleStop);
+document.addEventListener('keydown', handlePlay);
+document.addEventListener('keyup', handleStop);
 
 //fullscreen mode
 const toggleFullScreen = () => {
@@ -182,7 +124,7 @@ const toggleFullScreen = () => {
 
 fullscreenButton.addEventListener('click', toggleFullScreen);
 
-//play notes
+//record and play notes
 const resetButton = document.querySelector('.cntrls-button_type_reset');
 const playButton = document.querySelector('.cntrls-button_type_play');
 const stopButton = document.querySelector('.cntrls-button_type_stop');
@@ -252,10 +194,10 @@ const playRecordedNotes = () => {
 
 const toggleRecorder = () => {
   if (recorderSection.classList.contains('recorder-section_hidden')) {
-    removeElemClass(recorderSection, 'recorder-section_hidden');
+    removeElClass(recorderSection, 'recorder-section_hidden');
     hideRecorderButton.textContent = 'hide';
   } else {
-    addElemClass(recorderSection, 'recorder-section_hidden');
+    addElClass(recorderSection, 'recorder-section_hidden');
     hideRecorderButton.textContent = 'show';
   }
   
