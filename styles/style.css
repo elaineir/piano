@@ -256,17 +256,16 @@
 	height: 0;
 }
 
-.recorder-section__wrapper {
-	position: relative;
+.notes-recorder {
 	max-width: 1560px;
 	width: 100%;
 	margin: 0 auto;
+	max-height: 200px;
+	overflow-y: auto;
 }
 
-.notes-recorder {
-	max-height: 200px;
-	height: 200px;
-	overflow-y: auto;
+.notes-recorder::-webkit-scrollbar {
+	display: none;
 }
 
 .notes-recorder__notes {
@@ -274,15 +273,6 @@
 	font-size: 18px;
 	line-height: 22px;
 	color: #676c71;
-}
-
-.hide-scroll {
-	position: absolute;
-	top: 0;
-	right: 0;
-	width: 18px;
-	height: 200px;
-	background-color: #1e2327;
 }
 
 .fullscreen {
