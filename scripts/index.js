@@ -185,7 +185,7 @@ const playRecordedNotes = () => {
         return;
       }
   
-      if (sound.currentTime > .4) {
+      if (sound.currentTime > .3) {
         if (index < playedNotes.length) {
           if (index === playedNotes.length - 1) {
             sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
