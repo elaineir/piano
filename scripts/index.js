@@ -43,14 +43,6 @@ lettersButton.addEventListener('click', switchKeyMode);
 noMarksButton.addEventListener('click', switchKeyMode);
 
 //piano functions
-const createSound = (src) => {
-  const sound = new Audio();
-  sound.src = src;
-  sound.currentTime = 0;
-  sound.volume = 0.2;
-  return sound;
-};
-
 const handlePlay = (evt) => {
   let key;
   if (evt.type === 'keydown') {
@@ -65,15 +57,13 @@ const handlePlay = (evt) => {
   } else key = evt.target;
 
   if (key.classList.contains('piano__key')) {
-    const letter = key.querySelector('.piano__note');
-      
-    addElClass(key, 'piano__key_active');
-    addElClass(letter, 'piano__note_active');
-      
-    const note = key.dataset.note;
-    const src = `./assets/audio/${note}.mp3`;
-    createSound(src).play();
-    playedNotes.push(note);
+    startKeyAnimation(key);
+    
+    const audio = document.querySelector(`audio[data-note='${key.dataset.note}']`);
+    audio.volume = 0.2;
+    audio.currentTime = 0;
+    audio.play();
+    playedNotes.push(key.dataset.note);
     showRecordedNotes();
   }
 };
@@ -89,10 +79,7 @@ const handleStop = (evt) => {
   } else key = evt.target;
 
   if (key.classList.contains('piano__key')) {
-    removeElClass(key, 'piano__key_active');
-      
-    const letter = key.querySelector('.piano__note');
-    removeElClass(letter, 'piano__note_active');
+    stopKeyAnimation(key);
   }
 };
 
@@ -141,6 +128,10 @@ const showRecordedNotes = () => {
 };
 
 const resetRecord = () => {
+  if (document.querySelector('.piano__key_active')) {
+    const key = document.querySelector('.piano__key_active');
+    stopKeyAnimation(key);
+  }
   playedNotes = [];
   isPlaying = false;
   showRecordedNotes();
@@ -158,35 +149,66 @@ const stopPlayingRecordedNotes = () => {
   return;
 };
 
+const startKeyAnimation = (key) => {
+  const letter = key.querySelector('.piano__note');
+
+  addElClass(key, 'piano__key_active');
+  addElClass(letter, 'piano__note_active');
+};
+
+const stopKeyAnimation = (key) => {
+  const letter = key.querySelector('.piano__note');
+      
+  removeElClass(key, 'piano__key_active');
+  removeElClass(letter, 'piano__note_active');
+};
+
 const playRecordedNotes = () => {
-  isPlaying = true;
-  let index = 1;
-  const src = `./assets/audio/${playedNotes[0]}.mp3`;
-  const sound = createSound(src);
-  sound.play();
-
-  sound.addEventListener('timeupdate', soundHandler);
-
-  function soundHandler() {
-    if (isPlayingStopped) {
-      sound.removeEventListener('timeupdate', soundHandler);
-      isPlaying = false;
-      isPlayingStopped = false;
-      return;
-    }
-    if (sound.currentTime > .4) {
-      if (index < playedNotes.length) {
-        if (index === playedNotes.length - 1) {
-          sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
-          sound.play();
-          sound.removeEventListener('timeupdate', soundHandler);
-          isPlaying = false;
-          return;
+  if (playedNotes.length > 0) {
+    isPlaying = true;
+    let index = 1;
+    let key = document.querySelector(`button[data-note='${playedNotes[0]}']`);
+    const sound = new Audio(`./assets/audio/${playedNotes[0]}.mp3`);
+    sound.volume = 0.2;
+    sound.currentTime = 0;
+    startKeyAnimation(key);
+  
+    sound.play();
+    sound.addEventListener('timeupdate', soundHandler);
+  
+    function soundHandler() {
+      if (isPlayingStopped) {
+        stopKeyAnimation(key);
+        sound.removeEventListener('timeupdate', soundHandler);
+        isPlaying = false;
+        isPlayingStopped = false;
+        return;
+      }
+  
+      if (sound.currentTime > .4) {
+        if (index < playedNotes.length) {
+          if (index === playedNotes.length - 1) {
+            sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
+            stopKeyAnimation(key);
+            key = document.querySelector(`button[data-note='${playedNotes[index]}']`);
+            startKeyAnimation(key);
+            setTimeout(() => {
+              stopKeyAnimation(key);
+              isPlaying = false;
+              return;
+            }, 1000);
+            sound.play();
+            sound.removeEventListener('timeupdate', soundHandler);
+          } else {
+            sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
+            sound.currentTime = 0;
+            stopKeyAnimation(key);
+            key = document.querySelector(`button[data-note='${playedNotes[index]}']`);
+            startKeyAnimation(key);
+            sound.play();
+            index++;
+          }
         }
-        sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
-        sound.currentTime = 0;
-        sound.play();
-        index++;
       }
     }
   }
