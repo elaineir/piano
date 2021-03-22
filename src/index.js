@@ -1,5 +1,6 @@
 'use strict';
 
+import './styles/style.css';
 import { keyCodes } from './constants.js';
 
 const fullscreenButton = document.querySelector('.fullscreen');
