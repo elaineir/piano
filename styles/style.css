@@ -100,13 +100,16 @@
 .controls {
 	display: flex;
 	margin: 0 auto 20px;
-	max-width: 160px;
+	max-width: 200px;
+	background-color: #393e44;
+	border-radius: 20px;
 }
 
 .cntrls-button {
+	display: block;
 	width: 40px;
 	height: 40px;
-	background-color: #393e44;
+	background-color: transparent;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 20px;
@@ -137,9 +140,30 @@
 	background-image: url(../assets/svg/icon-backspace.svg);
 }
 
+.cntrls-button_type_record {
+	background-image: url(../assets/svg/icon-record.svg);
+	background-size: 36px;
+	background-position: 1px 1px;
+}
+
+.controls__checkbox_rec:checked + .cntrls-button_type_record {
+	background-size: 44px;
+	background-position: -3px -3px;
+	border-radius: 50%;
+	background-color: #e91e63;
+}
+
 .cntrls-button:hover {
 	cursor: pointer;
 	background-color: #bb3462;
+}
+
+.controls__checkbox {
+	position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
 }
 
 .piano {

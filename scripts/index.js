@@ -9,6 +9,7 @@ const pianoKeys = document.querySelectorAll('.piano__key');
 const notesButton = document.querySelector('.button_type_notes');
 const lettersButton = document.querySelector('.button_type_letters');
 const noMarksButton = document.querySelector('.button_type_nomarks');
+const recordButton = document.querySelector('.controls__checkbox_rec');
 
 const addElClass = (elem, elemClass) => elem.classList.add(elemClass);
 
@@ -63,8 +64,10 @@ const handlePlay = (evt) => {
     audio.volume = 0.2;
     audio.currentTime = 0;
     audio.play();
-    playedNotes.push(key.dataset.note);
-    showRecordedNotes();
+    if (recordButton.checked === true) {
+      playedNotes.push(key.dataset.note);
+      showRecordedNotes();
+    }
   }
 };
 
