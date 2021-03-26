@@ -171,7 +171,7 @@ const playRecordedNotes = () => {
     isPlaying = true;
     let index = 1;
     let key = document.querySelector(`button[data-note='${playedNotes[0]}']`);
-    const sound = new Audio(`./assets/audio/${playedNotes[0]}.mp3`);
+    const sound = new Audio(document.querySelector(`audio[data-note='${playedNotes[0]}']`).src);
     sound.volume = 0.2;
     sound.currentTime = 0;
     startKeyAnimation(key);
@@ -191,7 +191,7 @@ const playRecordedNotes = () => {
       if (sound.currentTime > .3) {
         if (index < playedNotes.length) {
           if (index === playedNotes.length - 1) {
-            sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
+            sound.src = document.querySelector(`audio[data-note='${playedNotes[index]}']`).src;
             stopKeyAnimation(key);
             key = document.querySelector(`button[data-note='${playedNotes[index]}']`);
             startKeyAnimation(key);
@@ -203,7 +203,7 @@ const playRecordedNotes = () => {
             sound.play();
             sound.removeEventListener('timeupdate', soundHandler);
           } else {
-            sound.src = `./assets/audio/${playedNotes[index]}.mp3`;
+            sound.src = document.querySelector(`audio[data-note='${playedNotes[index]}']`).src;
             sound.currentTime = 0;
             stopKeyAnimation(key);
             key = document.querySelector(`button[data-note='${playedNotes[index]}']`);
@@ -225,7 +225,6 @@ const toggleRecorder = () => {
     addElClass(recorderSection, 'recorder-section_hidden');
     hideRecorderButton.textContent = 'show';
   }
-  
 };
 
 resetButton.addEventListener('click', resetRecord);
