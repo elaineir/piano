@@ -126,6 +126,7 @@ const recorderSection = document.querySelector('.recorder-section');
 let playedNotes = [];
 let isPlayingStopped = false;
 let isPlaying = false;
+let playbackSpeedInput = document.querySelector('.recorder-section__range');
 
 const showRecordedNotes = () => {
   notesRecorder.textContent = playedNotes.join(' ');
@@ -171,6 +172,7 @@ const playRecordedNotes = () => {
   if (playedNotes.length > 0) {
     isPlaying = true;
     let index = 1;
+    let playbackSpeed = playbackSpeedInput.value; //based on current time
     let key = document.querySelector(`button[data-note='${playedNotes[0]}']`);
     const sound = new Audio(document.querySelector(`audio[data-note='${playedNotes[0]}']`).src);
     sound.volume = 0.2;
@@ -188,8 +190,9 @@ const playRecordedNotes = () => {
         isPlayingStopped = false;
         return;
       }
-  
-      if (sound.currentTime > .3) {
+      
+      if (sound.currentTime > playbackSpeed) {
+        playbackSpeed = playbackSpeedInput.value;
         if (index < playedNotes.length) {
           if (index === playedNotes.length - 1) {
             sound.src = document.querySelector(`audio[data-note='${playedNotes[index]}']`).src;
