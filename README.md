@@ -10,6 +10,3 @@ https://elaineir.github.io/piano/
 * CSS3
 * JavaScript (vanilla)
 * Webpack
-
-## Планы по доработке проекта:
-* перенос проекта на React
